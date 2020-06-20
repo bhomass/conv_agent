@@ -1,0 +1,1 @@
+from covid_corp.covid_agent import Covid_agent
