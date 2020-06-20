@@ -21,7 +21,7 @@ setup(name='covid19-agent',
       long_description=long_description,
       long_description_content_type='text/markdown',
       license='Apache License 2.0',
-      packages=['covid_corp'],
+      packages=[pkg for pkg in find_packages()],
       python_requires='>=3.5',
       install_requires=[
           'allennlp>=1.0.0',
