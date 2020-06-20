@@ -1,1 +1,0 @@
-from covid_corp import Covid_corp
