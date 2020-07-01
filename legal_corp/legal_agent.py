@@ -10,10 +10,10 @@ class Legal_agent:
                 cuda_device=torch.cuda.current_device()
         ) 
         
-        print('file location={}'.format((os.path.dirname(os.path.abspath(__file__)))))
+#         print('file location={}'.format((os.path.dirname(os.path.abspath(__file__)))))
         filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 'data', '1000453_1997-11-14_CREDIT AGREEMENT.txt')
-        print('cwd={}'.format(filepath))
+#         print('cwd={}'.format(filepath))
         with open(filepath, 'r') as credit_doc:
             content = credit_doc.read()
             
@@ -26,8 +26,8 @@ class Legal_agent:
             if len(line) > 0:
                 line_array.append(line)
                 i += 1
-                if i > max_lines:
-                    break
+#                 if i > max_lines:
+#                     break
                     
         self.corpus = '\n'.join(line_array)
                 
@@ -37,3 +37,6 @@ class Legal_agent:
             passage = self.corpus, question= question
         )
         return prediction["best_span_str"]  
+    
+    def get_corpus(self):
+        return self.corpus
