@@ -15,7 +15,7 @@ class Legal_agent:
         max_lines = 200
         i = 0
         for line in lines:
-            if len(line)  0:
+            if len(line) > 0:
                 line_array.append(line)
                 i += 1
                 if i > max_lines:
