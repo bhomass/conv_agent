@@ -27,8 +27,8 @@ setup(name='conv-agent',
           'allennlp>=1.0.0',
           'allennlp-models>=1.0.0'
       ],
-      extras_require=extras
+      extras_require=extras,
       package_data={'conv-agent': ['data/*']},
-      include_package_data=True,
+      include_package_data=True
       #zip_safe=False
      )
