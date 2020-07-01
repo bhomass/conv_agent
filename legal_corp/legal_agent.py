@@ -6,6 +6,7 @@ class Legal_agent:
         self.predictor = AllenNLPPredictor.from_path(
             "https://storage.googleapis.com/allennlp-public-models/bidaf-elmo-model-2020.03.19.tar.gz"
         )
+        print('file location={}'.format((os.path.dirname(os.path.abspath(__file__)))))
         filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 'data', '1000453_1997-11-14_CREDIT AGREEMENT.txt')
         print('cwd={}'.format(filepath))
