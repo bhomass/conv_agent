@@ -28,7 +28,7 @@ setup(name='conv-agent',
           'allennlp-models>=1.0.0'
       ],
       extras_require=extras
-      #package_data={'aif360': ['data/*', 'data/*/*', 'data/*/*/*']},
-      #include_package_data=False,
+      package_data={'conv-agent': ['data/*']},
+      include_package_data=True,
       #zip_safe=False
      )
