@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from functools import reduce
 
-long_description = """Covid 19 answering agent."""
+long_description = """Conv answering agent."""
 
 version = '0.1.0'
 
@@ -12,12 +12,12 @@ extras = {
 #extras['docs'] = ['sphinx', 'sphinx_rtd_theme']
 #extras['all'] = list(reduce(lambda s, l: s.union(l), extras.values(), set()))
 
-setup(name='covid19-agent',
+setup(name='conv-agent',
       version=version,
-      description='Covid 19 answering agent',
-      author='covid19 answer agent developer',
+      description='Multi domain answering agent',
+      author='question answer agent developer',
       author_email='bhomass@gmail.com',
-      url='https://github.com/bhomass/covid19_agent.git',
+      url='https://github.com/bhomass/conv_agent.git',
       long_description=long_description,
       long_description_content_type='text/markdown',
       license='Apache License 2.0',
