@@ -1,1 +1,1 @@
-from legal_corp.legal_agent import Legal_agent
+from pdf_files.pdf_agent import PDF_agent
