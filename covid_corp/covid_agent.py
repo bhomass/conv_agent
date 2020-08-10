@@ -4,7 +4,8 @@ from allennlp.predictors.predictor import Predictor as AllenNLPPredictor
 class Covid_agent:
     def __init__(self):
         self.predictor = AllenNLPPredictor.from_path(
-            "https://storage.googleapis.com/allennlp-public-models/bidaf-elmo-model-2020.03.19.tar.gz"
+            "https://storage.googleapis.com/allennlp-public-models/bidaf-elmo-model-2020.03.19.tar.gz",
+            cuda_device=torch.cuda.current_device()
         )
         para = []
         para.append("There are many types of human coronaviruses including some that commonly cause mild upper-respiratory tract illnesses. COVID-19 is a new disease caused by a new coronavirus that has not previously been seen in humans.")
@@ -23,8 +24,72 @@ class Covid_agent:
         
         self.corpus = ''.join(para)
 
-    def predict(self, question):
+    def answer(self, question):
         prediction = self.predictor.predict(
             passage = self.corpus, question= question
         )
-        return prediction["best_span_str"]  
+        [start, end] = prediction['best_span']
+        line = find_beginning_end(start, end, self.corpus)
+        return prediction["best_span_str"], line  
+    
+    def get_corpus(self):
+        return self.corpus
+    
+def find_new_line_backward(start, end, text):
+    if end == 0:
+        end = start + 1
+    start -= 1     # start backing up the document
+    partial_str = text[start: end]
+#     print('partial_str={}'.format(partial_str))
+    start_index = -1
+    try:
+        start_index = re.search("\n\n", partial_str).start()
+    except:
+        pass
+#     print('start_index= {}'.format(start_index))
+    while start_index != 0:
+        start -= 1
+        partial_str = text[start: end]
+#         print('partial_str={}'.format(partial_str))
+        try:
+            start_index = re.search("\n\n", partial_str).start()
+        except:
+            pass
+#         print('start_index= {}'.format(start_index))
+    
+#     print('final start_index= {}'.format(start))
+    return start
+
+def find_new_line_forward(start, end, text):
+    end += 1     # start backing up the document
+    partial_str = text[start: end]
+#     print('partial_str={}'.format(partial_str))
+    end_index = -1
+    try:
+        end_index = re.search("\n\n", partial_str).start()
+    except:
+        pass
+#     print('start_index= {}'.format(start_index))
+    while end_index == -1:
+        end += 1
+        partial_str = text[start: end]
+#         print('partial_str={}'.format(partial_str))
+        try:
+            end_index = re.search("\n\n", partial_str).start()
+        except:
+            pass
+#         print('end_index= {}'.format(end_index))
+    
+#     print('final end_index= {}'.format(start))
+    return end
+
+def find_beginning_end(start, end, text):
+    line_start = find_new_line_backward(start, end, text)
+    line_end = find_new_line_forward(start, end, text)
+    line = text[line_start + 2: line_end - 2]
+#     print('before sub line={}'.format(line))
+    line = re.sub('[*]+', '', line)
+    line = line.strip()
+#     print('after sub line={}'.format(line))
+    return line
+
