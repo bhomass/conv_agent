@@ -34,7 +34,7 @@ class PDF_agent:
     
     def read_nth_file(self, index):
         file = self.onlyfiles[index]
-        read_file(file)
+        self.read_file(file)
         
     def read_file(self, file):
         filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)),
