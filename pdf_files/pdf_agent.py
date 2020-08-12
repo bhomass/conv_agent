@@ -48,7 +48,7 @@ class PDF_agent:
         lines = content.split('\n')
         
         line_array = []
-        max_lines = 4000
+        max_lines = 2000
         i = 0
         for line in lines:
             if len(line) > 0:
