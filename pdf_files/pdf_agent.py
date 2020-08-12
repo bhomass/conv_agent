@@ -48,14 +48,14 @@ class PDF_agent:
         lines = content.split('\n')
         
         line_array = []
-        max_lines = 1000
+        max_lines = 5000
         i = 0
         for line in lines:
             if len(line) > 0:
                 line_array.append(line)
                 i += 1
-#                 if i > max_lines:
-#                     break
+                if i > max_lines:
+                    break
                     
         self.corpus = '\n'.join(line_array)
                 
