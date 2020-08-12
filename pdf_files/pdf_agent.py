@@ -49,7 +49,7 @@ class PDF_agent:
         print('total lines = {}'.format(len(lines)))
         
         line_array = []
-        max_lines = 500
+        max_lines = 300
         i = 0
         for line in lines:
             if len(line) > 0:
