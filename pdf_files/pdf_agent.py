@@ -46,7 +46,7 @@ class PDF_agent:
 #             content = credit_doc.read()
             
         lines = content.split('\n')
-        print('total lines = {}'.format(len(lines))
+        print('total lines = {}'.format(len(lines)))
         
         line_array = []
         max_lines = 500
