@@ -48,8 +48,8 @@ class PDF_agent:
         lines = content.split('\n')
         print('total lines = {}'.format(len(lines)))
         
-        line_array = []
-        max_lines = 300
+        line_array = ['\n\n']
+        max_lines = 500
         i = 0
         for line in lines:
             if len(line) > 0:
@@ -59,16 +59,18 @@ class PDF_agent:
                     break
                     
         self.corpus = '\n'.join(line_array)
+#         self.corpus = content
                 
 
     def answer(self, question):
         prediction = self.predictor.predict(
             passage = self.corpus, question= question
         )
-        [start, end] = prediction['best_span']
-        line = find_beginning_end(start, end, self.corpus)
+#         [start, end] = prediction['best_span']
+#         print('start end = {},{}'.format(start, end))
+#         line = find_beginning_end(start, end, self.corpus)
         
-        return prediction["best_span_str"], line
+        return prediction["best_span_str"]  #, line
     
     def get_corpus(self):
         return self.corpus
@@ -101,7 +103,7 @@ def find_new_line_backward(start, end, text):
         end = start + 1
     start -= 1     # start backing up the document
     partial_str = text[start: end]
-#     print('partial_str={}'.format(partial_str))
+    print('partial_str={}'.format(partial_str))
     start_index = -1
     try:
         start_index = re.search("\n\n", partial_str).start()
@@ -111,7 +113,7 @@ def find_new_line_backward(start, end, text):
     while start_index != 0:
         start -= 1
         partial_str = text[start: end]
-#         print('partial_str={}'.format(partial_str))
+        print('partial_str={}'.format(partial_str))
         try:
             start_index = re.search("\n\n", partial_str).start()
         except:
