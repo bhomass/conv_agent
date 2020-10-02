@@ -24,9 +24,11 @@ setup(name='conv-agent',
       packages=[pkg for pkg in find_packages()],
       python_requires='>=3.5',
       install_requires=[
-          'allennlp>=v1.1.0rc2',
+          'allennlp==1.1.0',
           'allennlp-models>=1.0.0',
-          'pdfminer3'
+          'pdfminer3',
+          'bokeh==2.2.1',
+          'pandas==1.1.2'
       ],
       extras_require=extras,
       package_data={'conv-agent': ['data/*']},
