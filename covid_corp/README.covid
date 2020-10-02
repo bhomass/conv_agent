@@ -1,0 +1,6 @@
+
+
+bokeh serve --allow-websocket-origin=* covid-answer.py
+
+use a browser to bring up  http://host:5006/covid-answer
+
