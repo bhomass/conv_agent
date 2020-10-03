@@ -1,0 +1,5 @@
+
+
+bokeh serve --allow-websocket-origin=* intent-detection.py
+
+use a browser to bring up  http://host:5006/intent-detection
