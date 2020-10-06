@@ -28,7 +28,8 @@ setup(name='conv-agent',
           'allennlp-models>=1.0.0',
           'pdfminer3',
           'bokeh==2.2.1',
-          'pandas==1.1.2'
+          'pandas==1.1.2',
+          'sentence-transformers==0.3.7.2'
       ],
       extras_require=extras,
       package_data={'conv-agent': ['data/*']},
